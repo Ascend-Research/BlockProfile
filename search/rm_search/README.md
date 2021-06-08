@@ -12,10 +12,8 @@ Add `export PYTHONPATH=/your_path/to/BlockProfile/ && ` before the `CUDA_VISIBLE
 
 #### To train NPU/GPU/CPU latency predictors
 
-Process the latency data for random networks into a pickle file. Make it a list of dicts. 
-Each dict contains the net configs data, the end-to-end truth latency, and resolution. 
-Then look at line `77-88` of `run_ofa_op_graph_lat_predictor.py` to see how each dict is processed. 
-When ready, simply run `run_ofa_op_graph_lat_predictor.py` to train a latency predictor.
+Put the `.csv` latency data into `./data/`.
+Next, execute `python3 -u run_ofa_op_graph_lat_predictor.py -sub_space mbv3` or `python3 -u run_ofa_op_graph_lat_predictor.py -sub_space pn` to train a latency predictor, make sure to specify the right sub-space.
 
 #### To run Pareto front search for the ProxylessNAS design space:
 
