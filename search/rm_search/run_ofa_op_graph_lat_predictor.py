@@ -1,4 +1,3 @@
-import pickle
 import random
 from search.rm_search.params import *
 import search.rm_search.utils.model_utils as m_util
@@ -28,7 +27,7 @@ def prepare_local_params(parser):
     parser.add_argument("-lat_truth_max", required=False, type=float,
                         default=None)
     parser.add_argument("-data_file", required=False, type=str,
-                        default=P_SEP.join([CACHE_DIR, "ofa_{}_npu_lat_data.pkl"]))
+                        default=P_SEP.join([DATA_DIR, "ofa_{}_npu_lat_data.csv"]))
     parser.add_argument("-train_dev_data_size", required=False, type=int,
                         default=14500)
     parser.add_argument("-dev_data_size", required=False, type=int,
@@ -65,8 +64,7 @@ def main(params):
                              logs_dir=params.logs_dir)
     book_keeper.log("Params: {}".format(params), verbose=False)
     book_keeper.log("Specified input data file: {}".format(params.data_file))
-    with open(params.data_file, "rb") as f:
-        data = pickle.load(f)
+    data = load_lat_data_from_csv(params.data_file)
     book_keeper.log("Loaded {} data instances".format(len(data)))
     set_random_seed(params.seed, log_f=book_keeper.log)
     train_dev_data = data[:params.train_dev_data_size]

@@ -46,3 +46,30 @@ class RunningStatMeter(object):
         self.avg = self.sum / self.cnt
         self.max = max(self.max, val)
         self.min = min(self.min, val)
+
+
+def load_lat_data_from_csv(fp, lat_key="overall npu lat"):
+    # net_id,net_str,device,resolution,lat unit,end-to-end lat
+    with open(fp, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    lines = lines[1:]
+    data = []
+    for line in lines:
+        line = line.strip()
+        if len(line) == 0: continue
+        net_id, net_str, device, resolution, \
+            lat_unit, overall_lat = line.split(",")
+        net_config = []
+        stages = net_str.split("|")
+        for stage in stages:
+            blocks = stage.split("->")
+            net_config.append(blocks)
+        data.append({
+            "net_id": int(net_id),
+            "net": net_config,
+            "device": device,
+            "lat_unit": lat_unit,
+            "resolution": int(resolution),
+            lat_key: float(overall_lat),
+        })
+    return data
