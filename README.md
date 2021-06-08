@@ -1,9 +1,9 @@
 # Block Profiling Code
 
-###Note: <br/>
+### Note: <br/>
 The current codebase can perform measurements on metrics included in the original Once-for-All repository (https://github.com/mit-han-lab/once-for-all/tree/master/ofa). We will be updating this repository as we are able to clear data pertaining to other metrics, e.g. in-house latency predictors, for public release.
 
-###Contents: <br/>
+### Contents: <br/>
 
 This code consists of two parts:
 
@@ -19,7 +19,7 @@ ofa==0.1.0.post202012082159
 torchprofile==0.0.2
 ```
 
-##Commands to perform profiling
+## Commands to perform profiling
 
 ```
 python3 main.py
