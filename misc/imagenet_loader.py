@@ -1,4 +1,4 @@
-# Using the exact code provided by the Once-For-All tutorial to ensure consistency
+# Using the exact code provided by the Once-For-All tutorial for transforms to ensure consistency
 import torch
 from torchvision import transforms, datasets
 import math
@@ -68,9 +68,10 @@ def _build_val_transform(size):
         ),
     ])
 
+
 class ImageNetRAMDataset(torch.utils.data.Dataset):
 
-	# Transforms are all performed when the RAM data is made, not here.
+    # Transforms are all performed when the RAM data is made, not here.
     def __init__(self, tensors):
         assert all(tensors[0].size(0) == tensor.size(0) for tensor in tensors)
         self.tensors = tensors
@@ -86,13 +87,11 @@ class ImageNetRAMDataset(torch.utils.data.Dataset):
 
 
 def get_imagenet_RAM_val_loader(batch_size=500, num_workers=6, res=224,
-	                        imagenet_path='models/ImageNetRAM/'):
+                            imagenet_path='models/ImageNetRAM/'):
 
     # Replace this directory with the location of your information
     content = torch.load(os.path.join(imagenet_path, 'val/val_data_%d' % res))
-    #content = torch.load('%sval/val_data_%d' % (imagenet_path, res))
 
-    # Get X, y, print sizes.
     tensor_x = torch.Tensor(content['data'])
     tensor_y = torch.LongTensor(content['labels'])
     print(tensor_x.shape)
@@ -101,12 +100,11 @@ def get_imagenet_RAM_val_loader(batch_size=500, num_workers=6, res=224,
     inet_val_dset = ImageNetRAMDataset((tensor_x, tensor_y))
 
     val_loader = torch.utils.data.DataLoader(inet_val_dset,
-    	batch_size=batch_size,
-    	num_workers=num_workers,
-    	shuffle=True,
-    	pin_memory=True,
-    	drop_last=False
-    	)
+                                             batch_size=batch_size,
+                                             num_workers=num_workers,
+                                             shuffle=True,
+                                             pin_memory=True,
+                                             drop_last=False
+                                             )
 
     return val_loader
-

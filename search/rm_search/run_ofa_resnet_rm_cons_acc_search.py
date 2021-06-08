@@ -30,7 +30,7 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default="../../.torch/ofa_nets/")
+                        default=P_SEP.join([SAVED_MODELS_DIR, "ofa_checkpoints"]))
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_resnet50")
     parser.add_argument("-lat_predictor_type", required=False, type=str,
@@ -42,11 +42,11 @@ def prepare_local_params(parser):
     parser.add_argument("-batch_size", required=False, type=int,
                         default=128)
     parser.add_argument("-random_init_set_size", required=False, type=int,
-                        default=20)
+                        default=100)
     parser.add_argument("-num_iterations", required=False, type=int,
-                        default=4)
+                        default=10)
     parser.add_argument("-eval_budget", required=False, type=int,
-                        default=50)
+                        default=200)
     parser.add_argument("-mutate_prob_type", required=False, type=str,
                         default="default")
     parser.add_argument("-stage_mutate_prob", required=False, type=float,
@@ -108,17 +108,17 @@ def main(params):
     # from model_src.model_helpers import RandomEvaluator
     # evaluator = RandomEvaluator()
 
-    target_nets = RES_CONS_ACC_SEARCH_TARGET_NETS
-    book_keeper.log("Specified {} target net(s)".format(len(RES_CONS_ACC_SEARCH_TARGET_NETS)))
-    for c in RES_CONS_ACC_SEARCH_TARGET_NETS:
+    target_nets = RSE_CONS_ACC_SEARCH_TARGET_NETS
+    book_keeper.log("Specified {} target net(s)".format(len(RSE_CONS_ACC_SEARCH_TARGET_NETS)))
+    for c in RSE_CONS_ACC_SEARCH_TARGET_NETS:
         book_keeper.log("Target net: {}".format(str(c)))
 
     # Set max cons score
     if params.max_cons_score is not None:
         max_cons_score = params.max_cons_score
         book_keeper.log("Using specified max cons score: {}".format(params.max_cons_score))
-    elif len(RES_CONS_ACC_SEARCH_TARGET_NETS) > 0:
-        max_cons_score = min([lat_predictor(_cfg) for _cfg in RES_CONS_ACC_SEARCH_TARGET_NETS])
+    elif len(RSE_CONS_ACC_SEARCH_TARGET_NETS) > 0:
+        max_cons_score = min([lat_predictor(_cfg) for _cfg in RSE_CONS_ACC_SEARCH_TARGET_NETS])
         book_keeper.log("Using target nets min lat as max cons score: {}".format(max_cons_score))
     else:
         max_cons_score = None

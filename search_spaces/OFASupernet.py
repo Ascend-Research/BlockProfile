@@ -7,7 +7,7 @@ from .LatencyPredictors.ofa_lat_predictor import OFA_NORM_CONSTANTS, load_ofa_mb
 
 class OFASupernet(ProxylessSupernet):
     def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', **kwargs):
-        super().__init__(logger=logger, imagenet_path=imagenet_path, device=device, ofa=True, **kwargs)
+        super().__init__(logger=logger, metrics=metrics, imagenet_path=imagenet_path, device=device, ofa=True, **kwargs)
 
         self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
 
@@ -59,6 +59,3 @@ class OFASupernet(ProxylessSupernet):
 
     def note10_latency_measure(self, architectures):
         return [self.lat_table.predict_efficiency(arch) for arch in architectures]
-
-    def block_meaning(self, **kwargs):
-        return super().block_meaning(**kwargs).replace("Stage", "Unit").replace("Block", "Layer")

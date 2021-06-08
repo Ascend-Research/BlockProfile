@@ -19,7 +19,8 @@ def parse_arguments():
 
 def process_folder(in_dir, out_dir, res):
 
-	# OFA ImageNet transformations for validation set
+    # Using the exact code provided by the Once-For-All tutorial for transforms to ensure consistency
+    # OFA ImageNet transformations for validation set
     myTransform = transforms.Compose([
         transforms.Resize(int(math.ceil(res/0.875))),
         transforms.CenterCrop(res),
@@ -29,7 +30,7 @@ def process_folder(in_dir, out_dir, res):
                 0.485,
                 0.456,
                 0.406],
-           std=[
+            std=[
                 0.229,
                 0.224,
                 0.225]

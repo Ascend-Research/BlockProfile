@@ -44,11 +44,13 @@ class ResNet50Supernet(ProxylessSupernet):
                        [1328, 1640, 2048]]
 
         # GPU Latency predictor and normalization constant
-        self.GPU_latency_predictor = load_ofa_resnet_op_graph_lat_predictor('models/Latency/ofa_resnet_op_graph_gpu_lat_predictor_best.pt')
+        self.GPU_latency_predictor = load_ofa_resnet_op_graph_lat_predictor(
+            'models/Latency/ofa_resnet_op_graph_gpu_lat_predictor_best.pt')
         self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_resnet_op_graph_gpu_lat"]
 
         # CPU Latency predictor and normalization constant
-        self.CPU_latency_predictor = load_ofa_resnet_op_graph_lat_predictor('models/Latency/ofa_resnet_op_graph_cpu_lat_predictor_best.pt')
+        self.CPU_latency_predictor = load_ofa_resnet_op_graph_lat_predictor(
+            'models/Latency/ofa_resnet_op_graph_cpu_lat_predictor_best.pt')
         self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_resnet_op_graph_cpu_lat"] * 1000
 
         # Select metrics
@@ -206,7 +208,8 @@ class ResNet50Supernet(ProxylessSupernet):
         for arch in archs:
             net_configs.append((arch['d'], arch['e'], arch['w']))
             resolutions.append(224)
-        return ofa_resnet_op_graph_lat_predict_batch(net_configs, resolutions, model, constant, batch_size=2, supernet=self.model)
+        return ofa_resnet_op_graph_lat_predict_batch(net_configs, resolutions, model, constant,
+                                                     batch_size=2, supernet=self.model)
 
     def gpu_latency_measure(self, architectures):
         return self._lat_measure(architectures, self.GPU_latency_predictor, self.GPU_latency_constant)

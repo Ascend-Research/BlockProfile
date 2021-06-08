@@ -35,155 +35,155 @@ def get_resnet_flops(d, e, w, res=224):
 
 
 if __name__ == "__main__":
-    # # PN Insight
-    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e4_k5'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k5'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
+    # # Insight
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k5', 'mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
     #                                   ['mbconv2_e6_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k5'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e4_k5', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k5'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k3'],
     #                                   ['mbconv2_e6_k7']])))
     # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e4_k5']])))
-
-    # # PN Full
-    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e3_k5'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e3_k5', 'mbconv2_e4_k3', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e4_k5', 'mbconv2_e4_k5', 'mbconv2_e6_k3', 'mbconv2_e3_k5'],
-    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k3', 'mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e4_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k5', 'mbconv2_e4_k5', 'mbconv2_e3_k7', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e3_k7', 'mbconv2_e4_k3'],
-    #                                   ['mbconv2_e3_k7', 'mbconv2_e6_k7', 'mbconv2_e4_k3', 'mbconv2_e4_k3'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e4_k3', 'mbconv2_e6_k5', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e3_k3', 'mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e4_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k5', 'mbconv2_e3_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k3'],
-    #                                   ['mbconv2_e3_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e3_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e3_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e3_k7'],
-    #                                   ['mbconv2_e3_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e3_k3', 'mbconv2_e3_k7', 'mbconv2_e4_k5', 'mbconv2_e3_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e3_k7', 'mbconv2_e3_k3', 'mbconv2_e4_k7'],
-    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k5', 'mbconv2_e3_k3', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e3_k3', 'mbconv2_e4_k5'],
-    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k3'],
-    #                                   ['mbconv2_e4_k7']])))
-    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k3', 'mbconv2_e6_k3', 'mbconv2_e4_k3', 'mbconv2_e3_k3'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k3', 'mbconv2_e3_k5', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
-    #                                   ['mbconv2_e4_k7', 'mbconv2_e3_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
-    #                                   ['mbconv2_e6_k3', 'mbconv2_e3_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k7', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k7', 'mbconv2_e4_k5'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
     #                                   ['mbconv2_e6_k7']])))
 
-    # # MBV3 Insight
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e4_k7', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k5']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e4_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k3']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e4_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e4_k7', 'mbconv3_e4_k5', 'mbconv3_e4_k7'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k7']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e4_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e4_k5', 'mbconv3_e4_k5', 'mbconv3_e4_k7', 'mbconv3_e4_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k5']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e4_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e4_k7', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e4_k5']])))
+    # # Full
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e4_k7', 'mbconv2_e4_k5', 'mbconv2_e4_k3', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e3_k7', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k7', 'mbconv2_e4_k3', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e4_k5'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k3', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e3_k5'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k3'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e3_k3'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e3_k7', 'mbconv2_e6_k3', 'mbconv2_e3_k5', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e4_k5', 'mbconv2_e6_k7', 'mbconv2_e4_k5', 'mbconv2_e4_k7'],
+    #                                   ['mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k5', 'mbconv2_e4_k3'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e6_k5', 'mbconv2_e3_k5', 'mbconv2_e6_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e3_k7', 'mbconv2_e3_k7', 'mbconv2_e6_k3'],
+    #                                   ['mbconv2_e4_k7', 'mbconv2_e6_k5', 'mbconv2_e3_k5', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e4_k5', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k7']])))
+    # print("{}\n".format(get_pn_flops([['mbconv2_e4_k7', 'mbconv2_e6_k7', 'mbconv2_e6_k7', 'mbconv2_e3_k5'],
+    #                                   ['mbconv2_e3_k7', 'mbconv2_e6_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e3_k5', 'mbconv2_e6_k7', 'mbconv2_e3_k3'],
+    #                                   ['mbconv2_e3_k5', 'mbconv2_e6_k3', 'mbconv2_e6_k5', 'mbconv2_e6_k5'],
+    #                                   ['mbconv2_e6_k7', 'mbconv2_e6_k3', 'mbconv2_e6_k7', 'mbconv2_e6_k7'],
+    #                                   ['mbconv2_e6_k7']])))
 
-    # # MBV3 Full
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e3_k5', 'mbconv3_e3_k7', 'mbconv3_e4_k7'],
-    #                                     ['mbconv3_e6_k5', 'mbconv3_e3_k3', 'mbconv3_e4_k3', 'mbconv3_e6_k7'],
-    #                                     ['mbconv3_e4_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e4_k3'],
+    # # Insight
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e4_k5'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k3', 'mbconv3_e4_k5'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k5'],
+    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k5'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e4_k5'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k5']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e4_k5'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k5'],
     #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e3_k3', 'mbconv3_e6_k5', 'mbconv3_e3_k7', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e4_k7', 'mbconv3_e6_k3', 'mbconv3_e3_k3'],
-    #                                     ['mbconv3_e4_k5', 'mbconv3_e3_k7', 'mbconv3_e6_k7', 'mbconv3_e3_k3'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e4_k5', 'mbconv3_e3_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e4_k3', 'mbconv3_e6_k3']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e4_k7', 'mbconv3_e4_k3', 'mbconv3_e3_k7'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e4_k3', 'mbconv3_e3_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e3_k3', 'mbconv3_e6_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k3', 'mbconv3_e4_k7', 'mbconv3_e3_k3'],
-    #                                     ['mbconv3_e6_k3', 'mbconv3_e4_k5', 'mbconv3_e6_k3', 'mbconv3_e3_k7']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e3_k7', 'mbconv3_e4_k5'],
-    #                                     ['mbconv3_e3_k5', 'mbconv3_e4_k5', 'mbconv3_e6_k3', 'mbconv3_e4_k5'],
-    #                                     ['mbconv3_e3_k7', 'mbconv3_e4_k3', 'mbconv3_e6_k3', 'mbconv3_e3_k7'],
-    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e4_k5']])))
-    # print("{}\n".format(get_mbv3_flops([['mbconv3_e4_k3', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e4_k7'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k5'],
-    #                                     ['mbconv3_e3_k7', 'mbconv3_e6_k5', 'mbconv3_e3_k5', 'mbconv3_e6_k5'],
-    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e3_k3', 'mbconv3_e6_k3'],
-    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7']])))
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e6_k3']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e4_k5', 'mbconv3_e4_k5'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e6_k3']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e4_k5', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k5', 'mbconv3_e6_k7']])))
 
-    # # ResNet Insight
+    # # Full
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e3_k3', 'mbconv3_e3_k5'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e4_k3', 'mbconv3_e4_k3'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e4_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e6_k5', 'mbconv3_e4_k5', 'mbconv3_e4_k7'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e3_k5', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e3_k7'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e6_k3']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e4_k7', 'mbconv3_e6_k5'],
+    #                                     ['mbconv3_e4_k5', 'mbconv3_e6_k5', 'mbconv3_e4_k3', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k7', 'mbconv3_e6_k3', 'mbconv3_e6_k3'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e4_k3'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e3_k5']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e6_k7', 'mbconv3_e4_k3', 'mbconv3_e3_k7'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e3_k3', 'mbconv3_e4_k3'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e4_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k5'],
+    #                                     ['mbconv3_e6_k5', 'mbconv3_e6_k5', 'mbconv3_e6_k3', 'mbconv3_e3_k3']])))
+    # print("{}\n".format(get_mbv3_flops([['mbconv3_e6_k3', 'mbconv3_e3_k5', 'mbconv3_e3_k7', 'mbconv3_e6_k5'],
+    #                                     ['mbconv3_e4_k7', 'mbconv3_e6_k5', 'mbconv3_e6_k7', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e4_k3', 'mbconv3_e6_k5', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k7', 'mbconv3_e6_k5', 'mbconv3_e4_k7', 'mbconv3_e6_k7'],
+    #                                     ['mbconv3_e6_k3', 'mbconv3_e6_k3', 'mbconv3_e4_k3', 'mbconv3_e6_k3']])))
+
+    # # Insight
     # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
-    #                                      e=[0.35, 0.35, 0.25, 0.2, 0.35, 0.25, 0.35, 0.2, 0.35, 0.35, 0.2, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.25],
-    #                                      w=[0, 2, 2, 1, 2, 2])))
+    #                                      e=[0.35, 0.35, 0.25, 0.35, 0.35, 0.2, 0.35, 0.2, 0.35, 0.35, 0.35, 0.35, 0.25, 0.25, 0.35, 0.35, 0.35, 0.2],
+    #                                      w=[2, 2, 2, 2, 2, 2])))
     # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
-    #                                      e=[0.25, 0.35, 0.25, 0.2, 0.35, 0.25, 0.35, 0.35, 0.25, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.25, 0.2],
-    #                                      w=[1, 2, 2, 2, 2, 2])))
+    #                                      e=[0.25, 0.25, 0.35, 0.2, 0.35, 0.35, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.25],
+    #                                      w=[2, 2, 2, 2, 2, 2])))
     # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
-    #                                      e=[0.2, 0.2, 0.35, 0.35, 0.35, 0.2, 0.2, 0.25, 0.25, 0.35, 0.2, 0.35, 0.25, 0.2, 0.35, 0.35, 0.25, 0.2],
-    #                                      w=[1, 2, 2, 2, 2, 2])))
+    #                                      e=[0.35, 0.25, 0.35, 0.35, 0.35, 0.25, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.25],
+    #                                      w=[2, 2, 2, 2, 2, 2])))
     # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
-    #                                      e=[0.35, 0.35, 0.25, 0.2, 0.35, 0.35, 0.35, 0.2, 0.2, 0.35, 0.35, 0.25, 0.2, 0.25, 0.35, 0.35, 0.35, 0.2],
-    #                                      w=[0, 2, 2, 1, 2, 2])))
+    #                                      e=[0.35, 0.35, 0.25, 0.25, 0.35, 0.35, 0.2, 0.25, 0.25, 0.35, 0.25, 0.35, 0.25, 0.25, 0.35, 0.35, 0.35, 0.2],
+    #                                      w=[2, 2, 2, 2, 2, 2])))
     # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
-    #                                      e=[0.2, 0.2, 0.25, 0.2, 0.35, 0.25, 0.2, 0.35, 0.25, 0.35, 0.35, 0.25, 0.2, 0.35, 0.35, 0.35, 0.35, 0.25],
+    #                                      e=[0.35, 0.2, 0.2, 0.35, 0.35, 0.25, 0.2, 0.25, 0.2, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.2],
+    #                                      w=[2, 2, 2, 2, 2, 2])))
+
+    # # Full
+    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
+    #                                      e=[0.25, 0.2, 0.25, 0.2, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35, 0.2, 0.35, 0.2, 0.25, 0.35, 0.35, 0.35],
     #                                      w=[0, 2, 2, 2, 2, 2])))
-
-    # # ResNet Full
-    # print("{}\n".format(get_resnet_flops(d=[2, 2, 1, 2, 2],
-    #                                      e=[0.25, 0.25, 0.25, 0.35, 0.35, 0.35, 0.25, 0.2, 0.2, 0.25, 0.35, 0.2, 0.35, 0.2, 0.35, 0.35, 0.2, 0.35],
-    #                                      w=[2, 2, 1, 2, 2, 2])))
-    # print("{}\n".format(get_resnet_flops(d=[2, 0, 2, 2, 1],
-    #                                      e=[0.35, 0.2, 0.35, 0.25, 0.35, 0.25, 0.35, 0.25, 0.35, 0.35, 0.35, 0.25, 0.2, 0.2, 0.25, 0.25, 0.35, 0.2],
-    #                                      w=[2, 2, 2, 2, 2, 2])))
-    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 1, 2],
-    #                                      e=[0.35, 0.35, 0.2, 0.35, 0.35, 0.2, 0.35, 0.2, 0.35, 0.35, 0.25, 0.35, 0.2, 0.2, 0.2, 0.35, 0.35, 0.25],
-    #                                      w=[2, 2, 2, 2, 2, 2])))
-    # print("{}\n".format(get_resnet_flops(d=[0, 2, 2, 2, 2],
-    #                                      e=[0.35, 0.35, 0.35, 0.35, 0.2, 0.35, 0.25, 0.25, 0.35, 0.35, 0.25, 0.25, 0.2, 0.25, 0.35, 0.2, 0.25, 0.35],
-    #                                      w=[0, 2, 0, 2, 2, 2])))
-    # print("{}\n".format(get_resnet_flops(d=[0, 2, 2, 2, 1],
-    #                                      e=[0.25, 0.25, 0.2, 0.35, 0.25, 0.35, 0.35, 0.35, 0.2, 0.35, 0.35, 0.25, 0.35, 0.25, 0.35, 0.35, 0.25, 0.2],
-    #                                      w=[2, 2, 2, 2, 2, 2])))
+    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
+    #                                      e=[0.35, 0.35, 0.35, 0.35, 0.2, 0.35, 0.35, 0.25, 0.25, 0.35, 0.25, 0.25, 0.35, 0.25, 0.35, 0.35, 0.2, 0.25],
+    #                                      w=[0, 2, 2, 2, 2, 2])))
+    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
+    #                                      e=[0.35, 0.35, 0.2, 0.25, 0.25, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.2, 0.25, 0.2, 0.25, 0.35, 0.35, 0.35],
+    #                                      w=[0, 2, 2, 2, 2, 2])))
+    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
+    #                                      e=[0.35, 0.2, 0.2, 0.35, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.2, 0.35, 0.25, 0.25, 0.35, 0.35, 0.25, 0.25],
+    #                                      w=[1, 2, 2, 2, 2, 2])))
+    # print("{}\n".format(get_resnet_flops(d=[2, 2, 2, 2, 2],
+    #                                      e=[0.35, 0.25, 0.35, 0.35, 0.35, 0.25, 0.25, 0.35, 0.35, 0.35, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.2],
+    #                                      w=[0, 2, 2, 2, 2, 2])))
     print("done")
