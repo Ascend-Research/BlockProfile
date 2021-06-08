@@ -2,6 +2,7 @@ import torch
 from .constants import *
 from .arch_utils import get_final_channel_sizes
 from search_spaces.LatencyPredictors.utils.model_utils import device
+from search_spaces.LatencyPredictors.utils.math_utils import make_divisible
 
 
 def get_ofa_pn_mbconv_io_shapes(net_configs, w=OFA_W_PN,

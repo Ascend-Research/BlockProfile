@@ -6,33 +6,19 @@ from pathlib import Path
 from misc import utils
 import numpy as np
 
-from comparators import OFAComparator
 from constants import SEARCH_SPACE_LIST
-from search.EvolutionFinder import EvolutionFinder
-from search import arch_constraints
-
-# TODO BIG, split file into "profile.py" and "search.py"
 
 parser = argparse.ArgumentParser("Block Search")
 parser.add_argument('-s', '--space', type=str, default="OFAPred", choices=SEARCH_SPACE_LIST, help="Search space")
 parser.add_argument('-n', '--num_archs', type=int, default=100, help="Number of archs to sample per specification")
 parser.add_argument('-b', '--blocks', type=str, default=None, help="Blocks to test")
-parser.add_argument('-f', '--filename', type=str, default=None, help="File where desired blocks may be found")
 parser.add_argument('-a', '--all', action='store_true', default=False, help="Evaluate ALL architectures")
 parser.add_argument('-d', '--device', type=str, default='cuda:0', help="CPU or CUDA Device")
-parser.add_argument('-c', '--comparison', action='store_true', default=False,
-                    help="Perform a sweeping comparison (only if args.all is not selected)")
-parser.add_argument('-e', '--evolution', action='store_true', default=False, help="Run an evolutionary search")
 parser.add_argument('-m', '--metrics', nargs="+", type=int, default=None, help="Pick a subset of metrics")
-parser.add_argument('--constraint_type', type=str, default="FLOPS", choices=["FLOPS", "latency"],
-                    help="Evolutionary constraint type")
-parser.add_argument('--constraint', type=float, default=500, help="Evolutionary constraint magnitude")
-parser.add_argument('--constraint_space', type=str, default="OFA_DEFAULT",
-                    help="Constrained search space for search")
-parser.add_argument('--save', type=str, default='EXP', help="experiment name")
+parser.add_argument('--data', type=str, default="/data/ImageNet", help="Location of ImageNet")
 parser.add_argument('--fast', action='store_true', default=False, help="Use fast validation dataloader")
+parser.add_argument('--save', type=str, default='EXP', help="experiment name")
 parser.add_argument('--no-log', action='store_true', default=False, help="No logging")
-parser.add_argument('--data', type=str, default="~/FastData/ImageNet/", help="Location of ImageNet data")
 
 quantiles = [0.01, 0.05, 0.95, 0.99]
 
@@ -72,26 +58,15 @@ def make_header(search_space, header_msg="Blocks, "):
 
 def main(args, logging):
 
-    if args.space == 'OFAPred' or args.space == 'ProxylessPred':
+    if args.space == 'OFAPred':
         from search_spaces.OFAPredictorSpace import OFAPredictorSpace as SearchModel
-        from search.managers import ProxylessManager as Manager
-        if args.space == 'OFAPred':
-            logging("Running on Once-For-All Accuracy predictor")
-        else:
-            from search_spaces.ProxylessPredictorSpace import ProxylessPredictorSpace as SearchModel
-            logging("Running on ProxylessNASPredictor Accuracy predictor")
+        logging("Running on Once-For-All Accuracy predictor")
         search_space = SearchModel(logger=logging, metrics=args.metrics, device=args.device,
                                    #resolutions=(160, 176, 192, 208, 224,),
-                                   resolutions=(192, 208, 224,),
-                                   #resolutions=(224,),
+                                   resolutions=(224,),
                                    depths=[2, 3, 4])
 
-        space_string = eval("arch_constraints.%s" % args.constraint_space)
-        search_manager = Manager(space_string)
-
     elif args.space == 'OFASupernet' or args.space == "ProxylessSupernet":
-        from search_spaces.OFAPredictorSpace import OFAPredictorSpace as SearchModel
-        from search.managers import ProxylessManager as Manager
         if args.space == "OFASupernet":
             from search_spaces.OFASupernet import OFASupernet as SearchModel
             logging("Running on Once-For-All Supernet")
@@ -102,24 +77,18 @@ def main(args, logging):
                                    imagenet_path=args.data,
                                    device=args.device,
                                    resolution=224,
-                                   depths=[2,3,4],
-                                   width=0,
-                                   workers=8,
-                                   batch_size=250,
+                                   depths=[2, 3, 4],
+                                   width=2,
+                                   batch_size=100,
                                    fast=args.fast)
 
-        space_string = eval("arch_constraints.%s" % args.constraint_space)
-        search_manager = Manager(space_string)
-
     elif args.space == "ResNet50Supernet":
-        # TODO ResNet manager, integration
         from search_spaces.ResNet50Supernet import ResNet50Supernet as SearchModel
         logging("Running on ResNet50 Supernet")
         search_space = SearchModel(logger=logging, metrics=args.metrics,
                                    imagenet_path=args.data,
                                    device=args.device,
                                    batch_size=25,
-                                   depth=[0, 1, 2],
                                    fast=args.fast)
 
     else:
@@ -140,33 +109,14 @@ def main(args, logging):
             msg = search_space.block_meaning(block_list=block)
             logging(print_archs_summary(search_space, result_dict, archs, msg=msg))
 
-    elif args.comparison:
-        comparator = OFAComparator(search_space, n=args.num_archs)
-        if type(args.blocks[0]) is list:
-            for block in args.blocks:
-                comparator.execute(block)
-        else:
-            comparator.execute(args.blocks)
-
-    elif args.evolution:
-        logging("Running evolutionary search with constraint %s, magnitude %2.4f" %
-                     (args.constraint_type, args.constraint))
-        evo_finder = EvolutionFinder(search_space, search_manager, constraint_type=args.constraint_type, logger=logging)
-        _, best_info = evo_finder.run_evolution_search(constraint=args.constraint)
-
-        logging("Best info:\n{}".format(best_info))
-
     else:
-        if args.filename is not None:
-            # TODO implement reading specifications from file
-            raise NotImplementedError
-        elif args.blocks is not None:
+        if args.blocks is not None:
             logging("Specification:")
             result_dict, archs = search_space.fully_evaluate_block(n=args.num_archs, block_list=args.blocks)
             logging(print_archs_summary(search_space, result_dict, archs,
-                                             msg=search_space.block_meaning(block_list=args.blocks)))
+                                        msg=search_space.block_meaning(block_list=args.blocks)))
         else:
-            logging("Sampling %d random architectures", args.num_archs)
+            logging("Sampling %d random architectures" % args.num_archs)
             archs = search_space.random_sample(n=args.num_archs)
             result_dict, _ = search_space.fully_evaluate_block(archs=archs)
             logging(print_archs_summary(search_space, result_dict, archs))

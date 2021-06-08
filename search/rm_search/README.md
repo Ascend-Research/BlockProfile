@@ -2,13 +2,9 @@
 
 Before starting any search you'll need to make sure:
 
-* The OFA supernet checkpoint files are placed under `<your path to the code>/BlockProfile/.torch/ofa_nets/`.
-* Latency predictors are pre-trained and the `.pt` checkpoint file placed under `<your path to the code>/BlockProfile/models/Latency/`.
+* The OFA supernet checkpoint files are placed under `./saved_models/ofa_checkpoints`.
+* Latency predictors are pre-trained and the `.pt` checkpoint file placed under `./saved_models/`.
 * ImageNet validation data placed in some folder you know.
-
-#### FAQ
-* If you are getting an error like this when running a search: `ModuleNotFoundError: No module named 'search'`. 
-Add `export PYTHONPATH=/your_path/to/BlockProfile/ && ` before the `CUDA_VISIBLE_DEVICES=...` command.
 
 #### To train NPU/GPU/CPU latency predictors
 
@@ -90,3 +86,7 @@ No insight:
     CUDA_VISIBLE_DEVICES=0 python3 -u run_ofa_resnet_rm_cons_acc_search.py -batch_size 200 -seed 1 -model_name ofa_resnet_rm_full_space_max_acc -resolution 224
     
 Once finished, the top-10 architectures and their accuracy values will be printed in the console.
+
+#### FAQ
+* If you are getting an error like this: `ModuleNotFoundError: No module named 'search'`. 
+Add `export PYTHONPATH=/your_path/to/BlockProfile/ && ` before the `CUDA_VISIBLE_DEVICES=...` command.

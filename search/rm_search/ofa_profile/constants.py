@@ -84,9 +84,9 @@ MBV3_CONS_ACC_SEARCH_TARGET_NETS = []
 assert len(set(str(__v) for __v in MBV3_CONS_ACC_SEARCH_TARGET_NETS)) \
        == len(MBV3_CONS_ACC_SEARCH_TARGET_NETS), "Target nets cannot have duplicates"
 
-RES_CONS_ACC_SEARCH_TARGET_NETS = []
-assert len(set(str(__v) for __v in RES_CONS_ACC_SEARCH_TARGET_NETS)) \
-       == len(RES_CONS_ACC_SEARCH_TARGET_NETS), "Target nets cannot have duplicates"
+RSE_CONS_ACC_SEARCH_TARGET_NETS = []
+assert len(set(str(__v) for __v in RSE_CONS_ACC_SEARCH_TARGET_NETS)) \
+       == len(RSE_CONS_ACC_SEARCH_TARGET_NETS), "Target nets cannot have duplicates"
 
 OFA_RES_STAGE_MIN_N_BLOCKS_MAX_ACC = (2, 2, 6, 4)
 

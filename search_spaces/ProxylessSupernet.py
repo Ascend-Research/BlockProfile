@@ -8,12 +8,12 @@ import torch
 import random
 from tqdm import tqdm
 from torchprofile import profile_macs
-import copy
 from .LatencyPredictors.ofa_lat_predictor import OFA_NORM_CONSTANTS, ofa_op_graph_lat_predict_batch
 
 
 class ProxylessSupernet(BaseSpace):
-    def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', fast=True, ofa=False, **kwargs):
+    def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', fast=False,
+                 ofa=False, **kwargs):
         super().__init__(logger)
 
         self.inet_path = imagenet_path
@@ -21,7 +21,6 @@ class ProxylessSupernet(BaseSpace):
         self.device = device
 
         self.ofa = ofa
-        # By default we only care about the mobile setting with the longest possible models
         self.num_blocks = kwargs.get('num_blocks', 21)
         self.num_stages = kwargs.get('stages', 6)
         if self.ofa:
@@ -29,28 +28,28 @@ class ProxylessSupernet(BaseSpace):
             self.num_stages = 5
         self.kernel_sizes = kwargs.get('kernel_sizes', [3, 5, 7])
         self.expand_ratios = kwargs.get('expand_ratios', [3, 4, 6])
-        self.depths = kwargs.get('depths', [4])  # Using kwargs you can change this to be [2, 3, 4] if desired
-        # Unlike the accuracy predictors, the supernet predictors only support a single resolution at a time
+        self.depths = kwargs.get('depths', [2, 3, 4])
         self.resolution = kwargs.get('resolution', 224)
 
-        workers = kwargs.get('workers', 8)
-        if fast:
-            self.logger("Using faster RAM validation data loader")
-            self.validation_loader = get_imagenet_RAM_val_loader(batch_size=self.batch_size,
-                                                                 num_workers=workers,
-                                                                 res=self.resolution,
-                                                                 imagenet_path="models/ImageNetRAM/")
-        else:
-            self.logger("Using traditional disk validation data loader")
-            self.validation_loader = get_imagenet_val_loader(imagenet_path=imagenet_path,
-                                                             batch_size=self.batch_size,
-                                                             workers=workers,
-                                                             size=self.resolution)
+        if metrics is None or 0 in metrics:
+            workers = kwargs.get('workers', 8)
+            if fast:
+                self.logger("Using faster RAM validation data loader")
+                self.validation_loader = get_imagenet_RAM_val_loader(batch_size=self.batch_size,
+                                                                     num_workers=workers,
+                                                                     res=self.resolution,
+                                                                     imagenet_path="models/ImageNetRAM/")
+            else:
+                self.logger("Using traditional disk validation data loader")
+                self.validation_loader = get_imagenet_val_loader(imagenet_path=imagenet_path,
+                                                                 batch_size=self.batch_size,
+                                                                 workers=workers,
+                                                                 size=self.resolution)
 
-        self.calibration_loader = get_imagenet_calib_loader(imagenet_path=imagenet_path,
-                                                            batch_size=self.batch_size,
-                                                            workers=workers,
-                                                            size=self.resolution)
+            self.calibration_loader = get_imagenet_calib_loader(imagenet_path=imagenet_path,
+                                                                batch_size=self.batch_size,
+                                                                workers=workers,
+                                                                size=self.resolution)
 
         if not ofa:
             from .LatencyPredictors.ofa_lat_predictor import load_ofa_pn_op_graph_gpu_lat_predictor, \
@@ -153,7 +152,7 @@ class ProxylessSupernet(BaseSpace):
 
     def block_meaning(self, **kwargs):
         block_list = kwargs.get('block_list', [[1, 0, 7, 6, 224]])
-        specification = "Stage %d Block %d as MBConv%d_%dx%d" % (block_list[0][0],
+        specification = "Unit %d Layer %d as MBConv%d_%dx%d" % (block_list[0][0],
                                                                  block_list[0][1],
                                                                  block_list[0][3],
                                                                  block_list[0][2],
@@ -165,7 +164,7 @@ class ProxylessSupernet(BaseSpace):
         if len(block_list) > 1:
             for block in block_list[1:]:
                 specification += ", "
-                specification += "Stage %d Block %d as MBConv%d_%dx%d" % (block[0],
+                specification += "Unit %d Layer %d as MBConv%d_%dx%d" % (block[0],
                                                                           block[1],
                                                                           block[3],
                                                                           block[2],
@@ -260,10 +259,8 @@ class ProxylessSupernet(BaseSpace):
             with tqdm(total=len(self.validation_loader), desc='Validate') as t:
                 for i, (images, labels) in enumerate(self.validation_loader):
                     images, labels = images.to(self.device), labels.to(self.device)
-                    # compute output
                     output = net(images)
                     loss = criterion(output, labels)
-                    # measure accuracy and record loss
                     acc1, acc5 = accuracy(output, labels, topk=(1, 5))
 
                     losses.update(loss.item(), images.size(0))
