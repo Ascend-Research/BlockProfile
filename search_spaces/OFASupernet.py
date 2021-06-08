@@ -9,7 +9,9 @@ class OFASupernet(ProxylessSupernet):
     def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', **kwargs):
         super().__init__(logger=logger, metrics=metrics, imagenet_path=imagenet_path, device=device, ofa=True, **kwargs)
 
-        self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
+        # Can't currently run in-house latency predictors
+        # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
+        self.metrics = ["accuracy", "FLOPS", "NPU_latency"]
 
         self.resolution = kwargs.get('resolution', 224)
 

@@ -9,7 +9,9 @@ class OFAPredictorSpace(BaseSpace):
     def __init__(self, logger=print, metrics=None, device='cpu', **kwargs):
         super().__init__(logger)
 
-        self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
+        # Can't currently run in-house latency predictors
+        # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
+        self.metrics = ["accuracy", "FLOPS", "NPU_latency"]
         self.acc_predictor = AccuracyPredictor(
             pretrained=True,
             device=device

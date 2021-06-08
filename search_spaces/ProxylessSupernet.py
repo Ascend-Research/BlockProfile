@@ -55,7 +55,9 @@ class ProxylessSupernet(BaseSpace):
             from .LatencyPredictors.ofa_lat_predictor import load_ofa_pn_op_graph_gpu_lat_predictor, \
                 load_ofa_pn_op_graph_cpu_lat_predictor, load_ofa_pn_op_graph_npu_lat_predictor
 
-            self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "NPU_latency"]
+            # Currently cannot run in-house predictors
+            # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "NPU_latency"]
+            self.metrics = ["accuracy", "FLOPS"]
 
             model_string = "ofa_proxyless_d234_e346_k357_w1.3"
             self.logger("Model string is: {}".format(model_string))

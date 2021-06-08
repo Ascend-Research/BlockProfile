@@ -8,7 +8,9 @@ class ResNet50Supernet(ProxylessSupernet):
     def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', **kwargs):
         super().__init__(logger=logger, imagenet_path=imagenet_path, device=device, ofa=True, **kwargs)
 
-        self.metrics = ["accuracy", "FLOPS", "GPU_Latency", "CPU_Latency"]
+        # Currently cannot run in-house predictors
+        #self.metrics = ["accuracy", "FLOPS", "GPU_Latency", "CPU_Latency"]
+        self.metrics = ["accuracy", "FLOPS"]
         # These parameters are different from the MBConv structures of OFA and ProxylessNAS
         # There are 4 stages in total.
         # Each stage has a maximum depth of 2
