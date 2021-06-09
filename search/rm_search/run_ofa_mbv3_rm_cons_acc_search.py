@@ -28,13 +28,13 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default="../../.torch/ofa_nets/")
+                        default=".torch/ofa_nets/")
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_mbv3_d234_e346_k357_w1.2")
     parser.add_argument("-lat_predictor_type", required=False, type=str,
                         default="custom")
     parser.add_argument("-lat_predictor_checkpoint", required=False, type=str,
-                        default=P_SEP.join(["../../models/Latency",
+                        default=P_SEP.join(["models/Latency",
                                             "ofa_mbv3_op_graph_npu_lat_predictor_best.pt"]))
     parser.add_argument("-max_cons_score", required=False, type=float,
                         default=None)
@@ -43,11 +43,11 @@ def prepare_local_params(parser):
     parser.add_argument("-batch_size", required=False, type=int,
                         default=128)
     parser.add_argument("-random_init_set_size", required=False, type=int,
-                        default=100)
+                        default=20)
     parser.add_argument("-num_iterations", required=False, type=int,
-                        default=10)
+                        default=4)
     parser.add_argument("-eval_budget", required=False, type=int,
-                        default=200)
+                        default=50)
     parser.add_argument("-mutate_prob_type", required=False, type=str,
                         default="uniform")
     parser.add_argument("-stage_mutate_prob", required=False, type=float,
@@ -102,7 +102,7 @@ def main(params):
                                       max_n_net_blocks=20, resolution=params.resolution,
                                       block_prefix="mbconv3",
                                       dummy_lat=0.0, ext_lat_predictor=None,  # De-activate built-in lat predictor
-                                      batch_size=params.batch_size, use_cached_loader=True)
+                                      batch_size=params.batch_size, use_cached_loader=False)
 
     # # Dummy for debugging
     # from model_src.model_helpers import RandomEvaluator

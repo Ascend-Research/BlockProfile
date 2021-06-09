@@ -30,7 +30,7 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default="../../.torch/ofa_nets/")
+                        default=".torch/ofa_nets/")
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_resnet50")
     parser.add_argument("-lat_predictor_type", required=False, type=str,
@@ -42,11 +42,11 @@ def prepare_local_params(parser):
     parser.add_argument("-batch_size", required=False, type=int,
                         default=128)
     parser.add_argument("-random_init_set_size", required=False, type=int,
-                        default=100)
+                        default=20)
     parser.add_argument("-num_iterations", required=False, type=int,
-                        default=10)
+                        default=4)
     parser.add_argument("-eval_budget", required=False, type=int,
-                        default=200)
+                        default=50)
     parser.add_argument("-mutate_prob_type", required=False, type=str,
                         default="default")
     parser.add_argument("-stage_mutate_prob", required=False, type=float,
@@ -102,7 +102,7 @@ def main(params):
                                          model_dir=params.supernet_checkpoint_dir,
                                          resolution=params.resolution,
                                          dummy_lat=0.0, ext_lat_predictor=None, # De-activate built-in lat predictor
-                                         batch_size=params.batch_size, use_cached_loader=True)
+                                         batch_size=params.batch_size, use_cached_loader=False)
 
     # # Dummy for debugging
     # from model_src.model_helpers import RandomEvaluator

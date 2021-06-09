@@ -7,8 +7,8 @@ The current codebase can perform measurements on metrics included in the origina
 
 This code consists of two parts:
 
-1. Block Profiling, performed using *main.py*
-2. Search experiments, performed using scripts in the */search/* directory
+1. Block Profiling, performed using `main.py`
+2. Search experiments, performed using scripts in the `/search/rm_search` directory
 
 ### Dependencies
 ```

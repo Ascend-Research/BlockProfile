@@ -27,13 +27,13 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default="../../.torch/ofa_nets/")
+                        default=".torch/ofa_nets/")
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_proxyless_d234_e346_k357_w1.3")
     parser.add_argument("-lat_predictor_type", required=False, type=str,
                         default="custom")
     parser.add_argument("-lat_predictor_checkpoint", required=False, type=str,
-                        default=P_SEP.join(["../../models/Latency",
+                        default=P_SEP.join(["models/Latency",
                                             "ofa_pn_op_graph_npu_lat_predictor_best.pt"]))
     parser.add_argument("-num_pareto_runs", required=False, type=int,
                         default=1)
@@ -100,7 +100,7 @@ def main(params):
                                       model_dir=params.supernet_checkpoint_dir,
                                       max_n_net_blocks=21, resolution=params.resolution,
                                       block_prefix="mbconv2", ext_lat_predictor=lat_predictor,
-                                      batch_size=params.batch_size, use_cached_loader=True)
+                                      batch_size=params.batch_size, use_cached_loader=False)
 
     # # Dummy for debugging
     # from model_src.model_helpers import RandomEvaluator
