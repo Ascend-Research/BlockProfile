@@ -1,6 +1,8 @@
 .torch/*
 logs/*
 *.npy
+search/rm_search/saved_models
+search/rm_search/logs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

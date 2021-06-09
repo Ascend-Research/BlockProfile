@@ -4,7 +4,7 @@ Before starting any search you'll need to make sure:
 
 * The OFA supernet checkpoint files are placed under `./saved_models/ofa_checkpoints`.
 * Latency predictors are pre-trained and the `.pt` checkpoint file placed under `./saved_models/`.
-* ImageNet validation data placed in some folder you know.
+* ImageNet validation data placed in some folder you know; use the flag `-imagenet_data_dir` to specify.
 
 #### To train NPU/GPU/CPU latency predictors
 

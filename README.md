@@ -1,7 +1,7 @@
 # Block Profiling Code
 
 ### Note: <br/>
-The current codebase can perform measurements on metrics included in the original Once-for-All repository (https://github.com/mit-han-lab/once-for-all/tree/master/ofa). We will be updating this repository as we are able to clear data pertaining to other metrics, e.g. in-house latency predictors, for public release.
+The current codebase can perform measurements on metrics included in the original Once-for-All repository (https://github.com/mit-han-lab/once-for-all/tree/master/ofa). We will be updating this repository as we are able to clear data pertaining to other metrics, e.g. in-house latency predictors, for public release. We will also be updating the `search/rm_search` code as it was originally separate from the profiling code.
 
 ### Contents: <br/>
 
