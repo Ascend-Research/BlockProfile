@@ -64,16 +64,16 @@ class ProxylessSupernet(BaseSpace):
             self.model = ofa_net(model_string, pretrained=True)
 
             # GPU Latency predictor and normalization constant
-            self.GPU_latency_predictor = load_ofa_pn_op_graph_gpu_lat_predictor()
-            self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_gpu_lat"]
+            # self.GPU_latency_predictor = load_ofa_pn_op_graph_gpu_lat_predictor()
+            # self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_gpu_lat"]
 
             # CPU Latency predictor and normalization constant
-            self.CPU_latency_predictor = load_ofa_pn_op_graph_cpu_lat_predictor()
-            self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_cpu_lat"] * 1000
+            # self.CPU_latency_predictor = load_ofa_pn_op_graph_cpu_lat_predictor()
+            # self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_cpu_lat"] * 1000
 
             # NPU Latency predictor and normalization constant
-            self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
-            self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
+            # self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
+            # self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
 
             # Subspace name and mbconv version - used for shared/inherited functions
             self.sub_space = "pn"
