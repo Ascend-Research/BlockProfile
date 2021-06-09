@@ -96,3 +96,5 @@ Once finished, the top-10 architectures and their accuracy values will be printe
 #### FAQ
 * If you are getting an error like this: `ModuleNotFoundError: No module named 'search'`. 
 Add `export PYTHONPATH=/your_path/to/BlockProfile/ && ` before the `CUDA_VISIBLE_DEVICES=...` command.
+  
+* If you encounter `broken pipe` errors, consider downgrading your version of `PyTorch` and `Torchvision`.
