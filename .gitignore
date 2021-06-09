@@ -3,6 +3,7 @@ logs/*
 *.npy
 search/rm_search/saved_models
 search/rm_search/logs
+models/Latency/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

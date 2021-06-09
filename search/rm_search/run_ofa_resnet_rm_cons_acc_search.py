@@ -30,7 +30,7 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default=P_SEP.join([SAVED_MODELS_DIR, "ofa_checkpoints"]))
+                        default="../../.torch/ofa_nets/")
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_resnet50")
     parser.add_argument("-lat_predictor_type", required=False, type=str,

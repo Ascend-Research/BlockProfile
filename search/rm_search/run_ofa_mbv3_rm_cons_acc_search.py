@@ -28,13 +28,13 @@ def prepare_local_params(parser):
     parser.add_argument("-evaluator_runs_dir", required=False, type=str,
                         default=P_SEP.join([LOGS_DIR, "ofa_runs"]))
     parser.add_argument("-supernet_checkpoint_dir", required=False, type=str,
-                        default=P_SEP.join([SAVED_MODELS_DIR, "ofa_checkpoints"]))
+                        default="../../.torch/ofa_nets/")
     parser.add_argument("-supernet_name", required=False, type=str,
                         default="ofa_mbv3_d234_e346_k357_w1.2")
     parser.add_argument("-lat_predictor_type", required=False, type=str,
                         default="custom")
     parser.add_argument("-lat_predictor_checkpoint", required=False, type=str,
-                        default=P_SEP.join([SAVED_MODELS_DIR,
+                        default=P_SEP.join(["../../models/Latency",
                                             "ofa_mbv3_op_graph_npu_lat_predictor_best.pt"]))
     parser.add_argument("-max_cons_score", required=False, type=float,
                         default=None)
