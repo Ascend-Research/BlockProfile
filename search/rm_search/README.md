@@ -14,6 +14,7 @@ Next, execute `python3 -u run_ofa_op_graph_lat_predictor.py -sub_space mbv3` or 
 
 #### Available Predictors:
 * Samsung Note10 (MBv3)
+* Huawei NPU (MBv3 and PN)
 
 #### Note: 
 Run all scripts from the toplevel `/BlockProfile/` directory.
@@ -28,22 +29,6 @@ No insight, using **NPU** latency predictor:
 
     CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_pn_rm_pareto_search.py -batch_size 200 -model_name ofa_pn_rm_npu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_pn_op_graph_npu_lat_predictor_best.pt
 
-With insight, using **GPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_pn_rm_pareto_search.py -batch_size 200 -model_name ofa_pn_rm_gpu_insight_pareto -mutate_prob_type gpu -space_id gpu -stage_block_count_type gpu -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_pn_op_graph_gpu_lat_predictor_best.pt
-
-No insight, using **GPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_pn_rm_pareto_search.py -batch_size 200 -model_name ofa_pn_rm_gpu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_pn_op_graph_gpu_lat_predictor_best.pt
-
-With insight, using **CPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_pn_rm_pareto_search.py -batch_size 200 -model_name ofa_pn_rm_cpu_insight_pareto -mutate_prob_type cpu -space_id cpu -stage_block_count_type cpu -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_pn_op_graph_cpu_lat_predictor_best.pt
-
-No insight, using **CPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_pn_rm_pareto_search.py -batch_size 200 -model_name ofa_pn_rm_cpu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_pn_op_graph_cpu_lat_predictor_best.pt
-
 #### To run Pareto front search for the OFA(MobileNetV3) design space:
 
 With insight, using **NPU** latency predictor:
@@ -53,22 +38,6 @@ With insight, using **NPU** latency predictor:
 No insight, using **NPU** latency predictor:
 
     CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_mbv3_rm_pareto_search.py -batch_size 200 -model_name ofa_mbv3_rm_npu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_mbv3_op_graph_npu_lat_predictor_best.pt
-
-With insight, using **GPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_mbv3_rm_pareto_search.py -batch_size 200 -model_name ofa_mbv3_rm_gpu_insight_pareto -mutate_prob_type gpu -space_id gpu -stage_block_count_type gpu -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_mbv3_op_graph_gpu_lat_predictor_best.pt
-
-No insight, using **GPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_mbv3_rm_pareto_search.py -batch_size 200 -model_name ofa_mbv3_rm_gpu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_mbv3_op_graph_gpu_lat_predictor_best.pt
-
-With insight, using **CPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_mbv3_rm_pareto_search.py -batch_size 200 -model_name ofa_mbv3_rm_cpu_insight_pareto -mutate_prob_type cpu -space_id cpu -stage_block_count_type cpu -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_mbv3_op_graph_cpu_lat_predictor_best.pt
-
-No insight, using **CPU** latency predictor:
-
-    CUDA_VISIBLE_DEVICES=0 python3 -u search/rm_search/run_ofa_mbv3_rm_pareto_search.py -batch_size 200 -model_name ofa_mbv3_rm_cpu_full_space_pareto -resolution 224 -lat_predictor_checkpoint models/Latency/ofa_mbv3_op_graph_cpu_lat_predictor_best.pt
 
 With insight, using **Note10** latency predictor:
 

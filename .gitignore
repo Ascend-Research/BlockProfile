@@ -9,6 +9,7 @@ logs/*
 search/rm_search/saved_models
 search/rm_search/logs
 models/Latency/*
+search/rm_search/READMEold.md
 
 =======
 ### PyCharm ###
