@@ -8,7 +8,7 @@ Data for available in-house predictors (currently only NPU) must be downloaded a
 1. Download the `.csv` files from [Google Drive](https://drive.google.com/drive/folders/1qUqWzc3D3-1LmRxqQiy6u4CRWsmOymuF) and place them in `search/rm_search/data/`
 2. For each `.csv` file, run the following command:
 ```
-python search/rm_search/run_ofa_op_graph_lat_predictor.py -subspace <SPACE> -lat_device <DEVICE>
+python -u search/rm_search/run_ofa_op_graph_lat_predictor.py -subspace <SPACE> -lat_device <DEVICE>
 ```
 Where `sub_space` is the design space, e.g., `mbv3`, `pn` and `lat_device` is the target device, e.g., `npu`. Doing so should place the appropriate `_best.pt` files in `models/Latency/`.
 
