@@ -29,8 +29,6 @@ def prepare_local_params(parser):
                         default=None)
     parser.add_argument("-data_file", required=False, type=str,
                         default=P_SEP.join([DATA_DIR, "ofa_{}_{}_lat_data.csv"]))
-    parser.add_argument("-data_output_cache", required=False, type=str,
-                        default="../../models/Latency/ofa_{}_{}_lat_data.pkl")
     parser.add_argument("-train_dev_data_size", required=False, type=int,
                         default=14500)
     parser.add_argument("-dev_data_size", required=False, type=int,
@@ -59,7 +57,6 @@ def prepare_local_params(parser):
 def main(params):
     params.model_name = params.model_name.format(params.sub_space, params.lat_device)
     params.data_file = params.data_file.format(params.sub_space, params.lat_device)
-    params.data_output_cache= params.data_output_cache.format(params.sub_space, params.lat_device)
     book_keeper = BookKeeper(log_file_name=params.model_name + ".txt",
                              model_name=params.model_name,
                              saved_models_dir=params.saved_models_dir,
@@ -70,8 +67,6 @@ def main(params):
     book_keeper.log("Specified input data file: {}".format(params.data_file))
     data = load_lat_data_from_csv(params.data_file)
     book_keeper.log("Loaded {} data instances".format(len(data)))
-    with open(params.data_output_cache, "wb") as f:
-        pickle.dump(data, f, protocol=4)
     set_random_seed(params.seed, log_f=book_keeper.log)
     train_dev_data = data[:params.train_dev_data_size]
     data = data[params.train_dev_data_size:]
