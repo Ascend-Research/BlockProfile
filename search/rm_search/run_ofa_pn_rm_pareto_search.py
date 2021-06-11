@@ -59,6 +59,7 @@ def prepare_local_params(parser):
                         default=0)
     parser.add_argument("-pareto_init_checkpoint", required=False, type=str,
                         default=None)
+    parser.add_argument("-fast", action="store_true", default=False)
     return parser.parse_args()
 
 
@@ -100,7 +101,7 @@ def main(params):
                                       model_dir=params.supernet_checkpoint_dir,
                                       max_n_net_blocks=21, resolution=params.resolution,
                                       block_prefix="mbconv2", ext_lat_predictor=lat_predictor,
-                                      batch_size=params.batch_size, use_cached_loader=False)
+                                      batch_size=params.batch_size, use_cached_loader=params.fast)
 
     # # Dummy for debugging
     # from model_src.model_helpers import RandomEvaluator

@@ -5,6 +5,7 @@ Before starting any search you'll need to make sure:
 * The OFA supernet checkpoint files are placed under `<your path to the code>/BlockProfile/.torch/ofa_nets/`.
 * Latency predictors are pre-trained and the `.pt` checkpoint file placed under `<your path to the code>/BlockProfile/models/Latency/`.
 * ImageNet validation data placed in some folder you know, use the flag `-imagenet_data_dir'` to specify where.
+* The flag `-fast` can be used to speed up search time using a RAM-based dataloader, however this requires a computer with a lot of memory (>32GB).
 
 #### To train NPU/GPU/CPU latency predictors
 
