@@ -34,3 +34,4 @@ python3 main.py
     --save # Name of experiment, where to save. Information will be saved in /logs/{Space}/{Save}
     --no-log # Binary; do not log experiment information
 ```
+Output data is formatted to be comma separated such that it can easily be transferred to a CSV file for further processing and analysis if desired, e.g., plotting trends.
