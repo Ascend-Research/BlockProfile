@@ -30,7 +30,7 @@ def prepare_local_params(parser):
     parser.add_argument("-data_file", required=False, type=str,
                         default=P_SEP.join([DATA_DIR, "ofa_{}_{}_lat_data.csv"]))
     parser.add_argument("-data_output_cache", required=False, type=str,
-                        default="../../models/Latency/ofa_{}_{}_lat_data.pkl")
+                        default="models/Latency/ofa_{}_{}_lat_data.pkl")
     parser.add_argument("-train_dev_data_size", required=False, type=int,
                         default=14500)
     parser.add_argument("-dev_data_size", required=False, type=int,
@@ -62,7 +62,7 @@ def main(params):
     params.data_output_cache= params.data_output_cache.format(params.sub_space, params.lat_device)
     book_keeper = BookKeeper(log_file_name=params.model_name + ".txt",
                              model_name=params.model_name,
-                             saved_models_dir=params.saved_models_dir,
+                             saved_models_dir="models/Latency",
                              init_eval_perf=float("inf"), eval_perf_comp_func=lambda old, new: new < old,
                              saved_model_file=params.saved_model_file,
                              logs_dir=params.logs_dir)

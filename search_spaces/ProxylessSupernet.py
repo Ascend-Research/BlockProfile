@@ -57,7 +57,7 @@ class ProxylessSupernet(BaseSpace):
 
             # Currently cannot run in-house predictors
             # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "NPU_latency"]
-            self.metrics = ["accuracy", "FLOPS"]
+            self.metrics = ["accuracy", "FLOPS", "NPU_latency"]
 
             model_string = "ofa_proxyless_d234_e346_k357_w1.3"
             self.logger("Model string is: {}".format(model_string))
@@ -72,8 +72,8 @@ class ProxylessSupernet(BaseSpace):
             # self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_cpu_lat"] * 1000
 
             # NPU Latency predictor and normalization constant
-            # self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
-            # self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
+            self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
+            self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
 
             # Subspace name and mbconv version - used for shared/inherited functions
             self.sub_space = "pn"

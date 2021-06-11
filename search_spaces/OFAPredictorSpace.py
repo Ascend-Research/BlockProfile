@@ -11,7 +11,7 @@ class OFAPredictorSpace(BaseSpace):
 
         # Can't currently run in-house latency predictors
         # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
-        self.metrics = ["accuracy", "FLOPS", "note10_latency"]
+        self.metrics = ["accuracy", "FLOPS", "note10_latency", "NPU_latency"]
         self.acc_predictor = AccuracyPredictor(
             pretrained=True,
             device=device
@@ -38,8 +38,8 @@ class OFAPredictorSpace(BaseSpace):
         # self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_cpu_lat"] * 1000
 
         # NPU Latency predictor and normalization constant
-        # self.NPU_latency_predictor = load_ofa_mbv3_op_graph_npu_lat_predictor()
-        # self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_npu_lat"] / 1000
+        self.NPU_latency_predictor = load_ofa_mbv3_op_graph_npu_lat_predictor()
+        self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_npu_lat"] / 1000
 
         # Subspace name and mbconv version - used for shared/inherited functions
         self.sub_space = "mbv3"
