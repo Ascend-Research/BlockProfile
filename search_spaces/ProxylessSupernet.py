@@ -55,25 +55,33 @@ class ProxylessSupernet(BaseSpace):
             from .LatencyPredictors.ofa_lat_predictor import load_ofa_pn_op_graph_gpu_lat_predictor, \
                 load_ofa_pn_op_graph_cpu_lat_predictor, load_ofa_pn_op_graph_npu_lat_predictor
 
-            # Currently cannot run in-house predictors
-            # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "NPU_latency"]
-            self.metrics = ["accuracy", "FLOPS", "NPU_latency"]
+            # List of all available metrics for ProxylessNAS
+            self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "NPU_latency"]
 
-            model_string = "ofa_proxyless_d234_e346_k357_w1.3"
-            self.logger("Model string is: {}".format(model_string))
-            self.model = ofa_net(model_string, pretrained=True)
+            # You can select a specific subset of the metrics by index
+            if metrics is not None:
+                self.metrics = [self.metrics[i] for i in metrics]
+            self.logger("Selected metrics:{}".format(self.metrics))
+
+            if "accuracy" in self.metrics or "FLOPS" in self.metrics:
+                model_string = "ofa_proxyless_d234_e346_k357_w1.3"
+                self.logger("Model string is: {}".format(model_string))
+                self.model = ofa_net(model_string, pretrained=True)
 
             # GPU Latency predictor and normalization constant
-            # self.GPU_latency_predictor = load_ofa_pn_op_graph_gpu_lat_predictor()
-            # self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_gpu_lat"]
+            if "GPU_latency" in self.metrics:
+                self.GPU_latency_predictor = load_ofa_pn_op_graph_gpu_lat_predictor()
+                self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_gpu_lat"]
 
             # CPU Latency predictor and normalization constant
-            # self.CPU_latency_predictor = load_ofa_pn_op_graph_cpu_lat_predictor()
-            # self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_cpu_lat"] * 1000
+            if "CPU_latency" in self.metrics:
+                self.CPU_latency_predictor = load_ofa_pn_op_graph_cpu_lat_predictor()
+                self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_cpu_lat"] * 1000
 
             # NPU Latency predictor and normalization constant
-            self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
-            self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
+            if "NPU_latency" in self.metrics:
+                self.NPU_latency_predictor = load_ofa_pn_op_graph_npu_lat_predictor()
+                self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_pn_op_graph_npu_lat"] / 1000
 
             # Subspace name and mbconv version - used for shared/inherited functions
             self.sub_space = "pn"
@@ -89,11 +97,6 @@ class ProxylessSupernet(BaseSpace):
             }
 
             self.logger("Overall architecture constraints: {}".format(self.overall_constraints))
-
-            # Select metrics
-            if metrics is not None:
-                self.metrics = [self.metrics[i] for i in metrics]
-            self.logger("Selected metrics:{}".format(self.metrics))
 
     # This file is taken from the original OFA repo, just modified to loop and give a number of archs
     def random_sample(self, n=10):

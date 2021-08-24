@@ -20,6 +20,8 @@ Where the value for the `-sub_space` flag is the design space, e.g., `mbv3` or `
 
 If you have trouble running `run_ofa_op_graph_lat_predictor.py`, see the corresponding README in `search/rm_search`
 
+**Note:** At this time the GPU and CPU predictor data for ResNet50 has not been publicly released.
+
 ### Contents: <br/>
 
 This code consists of two parts:

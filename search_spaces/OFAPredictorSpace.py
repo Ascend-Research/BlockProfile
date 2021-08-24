@@ -9,13 +9,13 @@ class OFAPredictorSpace(BaseSpace):
     def __init__(self, logger=print, metrics=None, device='cpu', **kwargs):
         super().__init__(logger)
 
-        # Can't currently run in-house latency predictors
-        # self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
-        self.metrics = ["accuracy", "FLOPS", "note10_latency", "NPU_latency"]
-        self.acc_predictor = AccuracyPredictor(
-            pretrained=True,
-            device=device
-        )
+        # List of all available metrics for OFA
+        self.metrics = ["accuracy", "FLOPS", "GPU_latency", "CPU_latency", "note10_latency", "NPU_latency"]
+
+        # You can select a specific subset of the metrics by index
+        if metrics is not None:
+            self.metrics = [self.metrics[i] for i in metrics]
+        self.logger("Selected metrics:{}".format(self.metrics))
 
         self.num_blocks = kwargs.get('num_blocks', 20)
         self.num_stages = kwargs.get('stages', 5)
@@ -25,30 +25,37 @@ class OFAPredictorSpace(BaseSpace):
         self.resolutions = kwargs.get('resolutions', (224,))  # Using kwargs you can change this to include
         # resolutions (160, 176, 192, 208, 224,) which covers the full OFA spectrum.
 
+        if "accuracy" in self.metrics:
+            self.acc_predictor = AccuracyPredictor(
+                pretrained=True,
+                device=device
+            )
+
         # FLOPS and Note10 Latency predictors
-        self.FLOPS_table = FLOPsTable(device=device, batch_size=1)
-        self.lat_table = LatencyTable(resolutions=self.resolutions)
+        if "FLOPS" in self.metrics:
+            self.FLOPS_table = FLOPsTable(device=device, batch_size=1)
+
+        if "note10_latency" in self.metrics:
+            self.lat_table = LatencyTable(resolutions=self.resolutions)
 
         # GPU Latency predictor and normalization constant
-        # self.GPU_latency_predictor = load_ofa_mbv3_op_graph_gpu_lat_predictor()
-        # self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_gpu_lat"]
+        if "GPU_latency" in self.metrics:
+            self.GPU_latency_predictor = load_ofa_mbv3_op_graph_gpu_lat_predictor()
+            self.GPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_gpu_lat"]
 
         # CPU Latency predictor and normalization constant
-        # self.CPU_latency_predictor = load_ofa_mbv3_op_graph_cpu_lat_predictor()
-        # self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_cpu_lat"] * 1000
+        if "CPU_latency" in self.metrics:
+            self.CPU_latency_predictor = load_ofa_mbv3_op_graph_cpu_lat_predictor()
+            self.CPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_cpu_lat"] * 1000
 
         # NPU Latency predictor and normalization constant
-        self.NPU_latency_predictor = load_ofa_mbv3_op_graph_npu_lat_predictor()
-        self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_npu_lat"] / 1000
+        if "NPU_latency" in self.metrics:
+            self.NPU_latency_predictor = load_ofa_mbv3_op_graph_npu_lat_predictor()
+            self.NPU_latency_constant = OFA_NORM_CONSTANTS["ofa_mbv3_op_graph_npu_lat"] / 1000
 
         # Subspace name and mbconv version - used for shared/inherited functions
         self.sub_space = "mbv3"
         self.mbv = 3
-
-        # Select metrics
-        if metrics is not None:
-            self.metrics = [self.metrics[i] for i in metrics]
-        self.logger("Selected metrics:{}".format(self.metrics))
 
         self.overall_constraints = {
             "num_blocks": self.num_blocks,

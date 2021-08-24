@@ -8,7 +8,7 @@ class ResNet50Supernet(ProxylessSupernet):
     def __init__(self, logger=print, metrics=None, imagenet_path='/data/ImageNet/', device='cpu', **kwargs):
         super().__init__(logger=logger, imagenet_path=imagenet_path, device=device, ofa=True, **kwargs)
 
-        # Currently cannot run in-house predictors
+        # Currently cannot run in-house predictors for ResNet50
         #self.metrics = ["accuracy", "FLOPS", "GPU_Latency", "CPU_Latency"]
         self.metrics = ["accuracy", "FLOPS"]
         # These parameters are different from the MBConv structures of OFA and ProxylessNAS
