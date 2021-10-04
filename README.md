@@ -8,7 +8,7 @@ terms of metrics like accuracy or inference latency on a number of target device
 Nvidia RTX 2080 Ti GPU, AMD Threadripper 2990WX CPU and Samsung Note10 mobile processor. 
 
 <p align="center">
-  <img src="fig/network_layout.png" alt="Network Layout" width="48%">
+  <img src="fig/network_layout.png" alt="Network Layout">
 </p>
 
 
