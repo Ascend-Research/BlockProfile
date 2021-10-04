@@ -11,12 +11,13 @@ Nvidia RTX 2080 Ti GPU, AMD Threadripper 2990WX CPU and Samsung Note10 mobile pr
   <img src="fig/network_layout.png" alt="Network Layout">
 </p>
 
-
 We can compare the 
 profiling results to draw conclusions about different Design Spaces perform on varying hardware, e.g. do specific
 operations require more latency, or how sensitive the network is to block choice in different locations.
 
-
+<p align="center">
+  <img src="fig/ofa_bp.png" alt="Block Profiling results on OFA-MBv3">
+</p>
 
 
 ### Dependencies
