@@ -66,3 +66,12 @@ python3 main.py
 ```
 Output data is formatted to be comma separated such that it can easily be transferred to a CSV file for further processing and analysis if desired, e.g., plotting trends.
 
+### We ask that if you use this code for your research, please cite our [[paper]](https://arxiv.org/abs/2109.12426):
+```
+@article{mills2021profiling,
+  title={Profiling Neural Blocks and Design Spaces for Mobile Neural Architecture Search},
+  author={Mills, Keith G and Han, Fred X and Zhang, Jialin and Rezaei, Seyed Saeed Changiz and Chudak, Fabian and Lu, Wei and Lian, Shuo and Jui, Shangling and Niu, Di},
+  journal={arXiv preprint arXiv:2109.12426},
+  year={2021}
+}
+```
