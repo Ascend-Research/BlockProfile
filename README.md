@@ -1,4 +1,23 @@
-# Block Profiling Code
+# Profiling Neural Blocks and Design Spaces for Mobile Neural Architecture Search
+
+This code accompanies the paper which has been accepted as an Applied Full Paper at the 30th ACM International 
+Conference on Information and Knowledge Management (CIKM `21). The paper is available at [[arXiv:2109.12426]](https://arxiv.org/abs/2109.12426).
+
+In the paper we profile several well-known Design Spaces like Once-for-All (OFA-MBv3), ProxylessNAS and ResNet50 in 
+terms of metrics like accuracy or inference latency on a number of target devices, like the Huawei Kirin 9000 NPU, 
+Nvidia RTX 2080 Ti GPU, AMD Threadripper 2990WX CPU and Samsung Note10 mobile processor. 
+
+<p align="center">
+  <img src="fig/network_layout.png" alt="Network Layout" width="48%">
+</p>
+
+
+We can compare the 
+profiling results to draw conclusions about different Design Spaces perform on varying hardware, e.g. do specific
+operations require more latency, or how sensitive the network is to block choice in different locations.
+
+
+
 
 ### Dependencies
 ```
@@ -45,3 +64,4 @@ python3 main.py
     --no-log # Binary; do not log experiment information
 ```
 Output data is formatted to be comma separated such that it can easily be transferred to a CSV file for further processing and analysis if desired, e.g., plotting trends.
+
