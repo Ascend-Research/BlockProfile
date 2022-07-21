@@ -68,10 +68,16 @@ Output data is formatted to be comma separated such that it can easily be transf
 
 ### We ask that if you use this code for your research, please cite our [[paper]](https://arxiv.org/abs/2109.12426):
 ```
-@article{mills2021profiling,
-  title={Profiling Neural Blocks and Design Spaces for Mobile Neural Architecture Search},
-  author={Mills, Keith G and Han, Fred X and Zhang, Jialin and Rezaei, Seyed Saeed Changiz and Chudak, Fabian and Lu, Wei and Lian, Shuo and Jui, Shangling and Niu, Di},
-  journal={arXiv preprint arXiv:2109.12426},
-  year={2021}
+@inbook{mills2021profiling,
+author = {Mills, Keith G. and Han, Fred X. and Zhang, Jialin and Changiz Rezaei, Seyed Saeed and Chudak, Fabian and Lu, Wei and Lian, Shuo and Jui, Shangling and Niu, Di},
+title = {Profiling Neural Blocks and Design Spaces for Mobile Neural Architecture Search},
+year = {2021},
+isbn = {9781450384469},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://dl.acm.org/doi/10.1145/3459637.3481944},
+booktitle = {Proceedings of the 30th ACM International Conference on Information &amp; Knowledge Management},
+pages = {4026–4035},
+numpages = {10}
 }
 ```
